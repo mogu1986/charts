@@ -1,0 +1,25 @@
+{{- if or .Values.service.enabled .Values.ingress.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "meiwu.name" . }}
+  labels:
+    app: {{ include "meiwu.name" . }}
+    chart: {{ include "meiwu.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+  {{- if and (.Values.metrics.enabled) (.Values.metrics.annotations) }}
+{{ toYaml .Values.metrics.annotations | indent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ include "meiwu.name" . }}
+    release: {{ .Release.Name }}
+{{- end }}

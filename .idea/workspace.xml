@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dab2f192-7a90-4ab2-b431-c32fa17ebfa6" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="240">
+                <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>log</find>
+      <find>lang</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="uat" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/meiwu/templates/NOTES.txt" />
+        <option value="$PROJECT_DIR$/meiwu/templates/configmap.yaml" />
+        <option value="$PROJECT_DIR$/1.yaml" />
+        <option value="$PROJECT_DIR$/meiwu/values.yaml" />
+        <option value="$PROJECT_DIR$/meiwu/templates/deployment.yaml" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/push.sh" />
+        <option value="$PROJECT_DIR$/encrypt" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+        <option value="$PROJECT_DIR$/.idea/charts.iml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="802" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="charts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="charts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dab2f192-7a90-4ab2-b431-c32fa17ebfa6" name="Default Changelist" comment="" />
+      <created>1597153298050</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597153298050</updated>
+      <workItem from="1597153299395" duration="2464000" />
+      <workItem from="1597410120837" duration="2198000" />
+      <workItem from="1597423889392" duration="714000" />
+      <workItem from="1597568483757" duration="1325000" />
+      <workItem from="1599491762309" duration="387000" />
+      <workItem from="1599576894353" duration="454000" />
+      <workItem from="1599655469301" duration="623000" />
+      <workItem from="1599832530457" duration="531000" />
+      <workItem from="1599895933766" duration="6930000" />
+      <workItem from="1600004027977" duration="1453000" />
+      <workItem from="1600097887670" duration="866000" />
+      <workItem from="1600262399561" duration="513000" />
+      <workItem from="1600269892293" duration="872000" />
+      <workItem from="1600426706894" duration="778000" />
+      <workItem from="1600485592277" duration="8343000" />
+      <workItem from="1601297834046" duration="412000" />
+      <workItem from="1602860295947" duration="85000" />
+      <workItem from="1608036972190" duration="301000" />
+      <workItem from="1608304963490" duration="47000" />
+      <workItem from="1608396098497" duration="25000" />
+      <workItem from="1608475847721" duration="65000" />
+      <workItem from="1608558206224" duration="646000" />
+      <workItem from="1611928592025" duration="590000" />
+      <workItem from="1612022062307" duration="28000" />
+      <workItem from="1612026063295" duration="57000" />
+      <workItem from="1612090191842" duration="493000" />
+      <workItem from="1612193488328" duration="14000" />
+      <workItem from="1612277392056" duration="23000" />
+      <workItem from="1612363534685" duration="32000" />
+      <workItem from="1614782604723" duration="50000" />
+      <workItem from="1614958186262" duration="599000" />
+      <workItem from="1614959539863" duration="77000" />
+      <workItem from="1615009738837" duration="351000" />
+      <workItem from="1615042948696" duration="57000" />
+      <workItem from="1615043049575" duration="66000" />
+      <workItem from="1615121540053" duration="320000" />
+      <workItem from="1615207182565" duration="344000" />
+      <workItem from="1615301971883" duration="331000" />
+      <workItem from="1615302339371" duration="33000" />
+      <workItem from="1615388118832" duration="56000" />
+      <workItem from="1615388229172" duration="21000" />
+      <workItem from="1615649722008" duration="490000" />
+      <workItem from="1615653827073" duration="40000" />
+      <workItem from="1615653893973" duration="8000" />
+      <workItem from="1615695954479" duration="1181000" />
+      <workItem from="1615738323756" duration="32000" />
+      <workItem from="1615738385646" duration="20000" />
+      <workItem from="1615821345920" duration="30000" />
+      <workItem from="1615899563429" duration="21000" />
+      <workItem from="1615900038741" duration="3274000" />
+      <workItem from="1615987395379" duration="536000" />
+      <workItem from="1615993578279" duration="35000" />
+      <workItem from="1616083663722" duration="230000" />
+      <workItem from="1616084057327" duration="44000" />
+      <workItem from="1616159921013" duration="1433000" />
+      <workItem from="1616172437902" duration="19000" />
+      <workItem from="1616211766653" duration="779000" />
+      <workItem from="1616296917283" duration="4496000" />
+      <workItem from="1616333953619" duration="337000" />
+      <workItem from="1616416722054" duration="376000" />
+      <workItem from="1616503864204" duration="483000" />
+      <workItem from="1616594979330" duration="121000" />
+      <workItem from="1616678672561" duration="323000" />
+      <workItem from="1616687362846" duration="20000" />
+      <workItem from="1616763083963" duration="185000" />
+      <workItem from="1616854121085" duration="15000" />
+      <workItem from="1616913468966" duration="1271000" />
+      <workItem from="1616944841202" duration="8000" />
+      <workItem from="1617019379570" duration="586000" />
+      <workItem from="1617032615837" duration="15000" />
+      <workItem from="1617032664847" duration="19000" />
+      <workItem from="1617112818843" duration="360000" />
+      <workItem from="1617200555955" duration="599000" />
+      <workItem from="1617212882355" duration="9000" />
+      <workItem from="1617282609990" duration="659000" />
+      <workItem from="1617373602743" duration="272000" />
+      <workItem from="1617424432980" duration="488000" />
+      <workItem from="1628482878897" duration="260000" />
+    </task>
+    <task id="LOCAL-00001" summary="debug">
+      <created>1597155624128</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597155624128</updated>
+    </task>
+    <task id="LOCAL-00002" summary="debug">
+      <created>1597413385915</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597413385915</updated>
+    </task>
+    <task id="LOCAL-00003" summary="debug">
+      <created>1599920332578</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599920332578</updated>
+    </task>
+    <task id="LOCAL-00004" summary="debug">
+      <created>1600609102889</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600609102889</updated>
+    </task>
+    <task id="LOCAL-00005" summary="debug">
+      <created>1600609682832</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600609682832</updated>
+    </task>
+    <task id="LOCAL-00006" summary="debug">
+      <created>1600609804090</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600609804090</updated>
+    </task>
+    <task id="LOCAL-00007" summary="debug">
+      <created>1616297779714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1616297779714</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add lang label">
+      <created>1616916718534</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1616916718534</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="52648000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16881259" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.35783133" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32891566" />
+      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="SciView" order="6" />
+    </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="debug" />
+    <MESSAGE value="add lang label" />
+    <option name="LAST_COMMIT_MESSAGE" value="add lang label" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/_helpers.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.yaml" />
+    <entry file="file://$PROJECT_DIR$/meiwu/Chart.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/configmap.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/ingress.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/NOTES.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/values.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1545">
+          <caret line="103" column="16" selection-start-line="103" selection-start-column="16" selection-end-line="103" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/deployment.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="230" selection-start-line="230" selection-end-line="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/service.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiwu/templates/service-dubbo.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encrypt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/push.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="240">
+            <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

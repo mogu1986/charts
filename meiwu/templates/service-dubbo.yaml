@@ -1,0 +1,15 @@
+{{- if .Values.dubbo.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "meiwu.name" . }}-dubbo
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      nodePort: {{ .Values.dubbo.port }}
+      port: 20880
+      targetPort: 20880
+  selector:
+    app: {{ include "meiwu.name" . }}
+{{- end }}

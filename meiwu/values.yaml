@@ -1,0 +1,200 @@
+# 服务实例个数，建议默认2个。 实际情况是sso-web rbac-web等流量少，为了节省资源，设置为默认1个了
+replicaCount: 1
+
+nameOverride: distribution
+
+lang: java
+
+dubbo:
+  enabled: false
+  port: 30301
+
+# 是否开启 apm
+skywalking:
+  enabled: false
+  image:
+    repository: meiwu.tencentcloudcr.com/library/skywalking-agent-sidecar
+    tag: 8.0.1
+  oapserver:
+    host: skywalking-oap.apm
+    port: 11800
+
+arthas:
+  enabled: true
+  image:
+    repository: meiwu.tencentcloudcr.com/library/arthas
+    tag: 3.1.7-no-jdk
+
+# 是否开启arms监控，只是多一个功能开关，腾讯云里面并不会使用
+arms:
+  enabled: false
+
+msepilot:
+  enabled: false
+
+eks:
+  enabled: false
+  podAnnotations:
+    eks.tke.cloud.tencent.com/cpu: "2"
+    eks.tke.cloud.tencent.com/gpu-count: "1"
+    eks.tke.cloud.tencent.com/gpu-type: 1/4*V100
+    eks.tke.cloud.tencent.com/mem: 4Gi
+    eks.tke.cloud.tencent.com/security-group-id: "sg-dxxxxxx5,sg-zxxxxxxu"
+
+image:
+  repository: meiwu.tencentcloudcr.com/library/example
+  tag: 1
+
+# 默认添加腾讯的镜像密钥
+imagePullSecrets: []
+
+# jvm参数，dubbo.protocol.port、server.port、xxl.job.executor.port都设置了，就算不用，设置了也不影响
+# -javaagent:/skywalking/agent/skywalking-agent.jar
+env:
+  - name: JAVA_OPTS
+    value: >-
+      -server
+      -XX:ActiveProcessorCount=2
+      -XX:InitialRAMPercentage=40.0
+      -XX:MinRAMPercentage=40.0
+      -XX:MaxRAMPercentage=90.0
+      -XX:NewRatio=4
+      -XX:MetaspaceSize=256M
+      -XX:MaxMetaspaceSize=256M
+      -XX:+DisableExplicitGC
+      -XX:+UseConcMarkSweepGC
+      -XX:+CMSParallelInitialMarkEnabled
+      -XX:+CMSParallelRemarkEnabled
+      -XX:+UseFastAccessorMethods
+      -XX:+UseCMSInitiatingOccupancyOnly
+      -XX:CMSInitiatingOccupancyFraction=80
+      -XX:+HeapDumpOnOutOfMemoryError
+      -Dfile.encoding=UTF-8
+      -Duser.timezone=Asia/Shanghai
+      -Djava.security.egd=file:/dev/./urandom
+      -Dspring.logPath=/logs
+      -Dserver.port=80
+      -Dspring.cloud.consul.host=consul.ops
+      -Dspring.cloud.consul.port=8500
+      -Dspring.cloud.consul.discovery.register=true
+      -Dskywalking.trace.ignore_path=/v1/**
+
+# 配置中心地址，这里用了svc方式访问，修改地址的时候，只用修改一个地方(svn对应的Endpoints)即可
+args:
+  - '--xxl.job.executor.port=9999'
+
+# 暴露的端口，项目里面有 80 9999 2个端口，不同项目开放的端口不同，默认开放http端口
+ports:
+  http:
+    enabled: true
+  xxl:
+    enabled: false
+  dubbo:
+    enabled: false
+
+# 资源控制，默认上限9G，JVM设置最大8G
+#resources: {}
+resources:
+  limits:
+    memory: 2Gi
+  requests:
+    memory: 1Gi
+
+# node调度选择器，建议用亲和度代替
+nodeSelector: {}
+
+antiAffinity: "soft"
+
+# 亲和度，默认不允许调度到ops机器上
+nodeAffinity:
+  preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 1
+      preference:
+        matchExpressions:
+          - key: k8s.mw.top/group
+            operator: NotIn
+            values:
+              - ops
+
+# 是否开启svc，一般provider直接走ip，不开启，多数用在需要互联网访问的工程，以及2个服务之间不通过注册中心获取ip下，直接互相访问使用
+service:
+  enabled: false
+  type: ClusterIP
+  port: 80
+
+# 是否开启互联网外部访问，有域名映射服务的需要开启，会和svc绑定，需要提前创建svc
+ingress:
+  enabled: false
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+  #     nginx.ingress.kubernetes.io/cors-allow-credentials: 'true'
+  #     nginx.ingress.kubernetes.io/cors-allow-methods: 'PUT, GET, POST, OPTIONS'
+  #     nginx.ingress.kubernetes.io/cors-allow-origin: 'https://portal.shixhsit.com'
+  #     nginx.ingress.kubernetes.io/enable-cors: 'true'
+  #     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+  #     nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+  path: /
+  hosts:
+    - distribution.mwuat.com
+#  tls:
+#    - secretName: ssl-sxh
+#      hosts:
+#        - rbac.shixh.com
+
+# 是否开启日志采集
+log:
+  enabled: false
+  path: /logs
+  image:
+    repository: meiwu.tencentcloudcr.com/library/filebeat
+    tag: 7.5.1
+  elasticsearch:
+    host: 192.168.48.18
+    port: 9200
+    username: elastic
+    password: password
+  resources:
+    limits:
+      memory: 300Mi
+    requests:
+      memory: 300Mi
+
+sls:
+  enabled: true
+  path: /logs/*.log
+  ttl: 60
+
+# 监控
+metrics:
+  enabled: true
+  annotations:
+    prometheus.io/scrape: 'false'
+    prometheus.io/port: '80'
+    prometheus.io/path: '/prometheus'
+  serviceMonitor:
+    enabled: false
+    additionalLabels: {}
+
+# 是否开启挂存储卷，后期会统一用文件服务
+data:
+  persistence:
+    enabled: false
+
+extraVolumeMounts: []
+
+extraVolumes: []
+
+
+# springboot params
+spring:
+  profiles:
+    active: test
+
+jasypt:
+  enabled: true
+  encryptor:
+    password: mwops
+
+apollo:
+  meta: ""
+  configservice: ""

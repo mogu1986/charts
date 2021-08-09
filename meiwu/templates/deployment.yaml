@@ -1,0 +1,255 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "meiwu.name" . }}
+  labels:
+    app: {{ include "meiwu.name" . }}
+    chart: {{ include "meiwu.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "meiwu.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "meiwu.name" . }}
+        release: {{ .Release.Name }}
+        lang: {{ .Values.lang }}
+      annotations:
+      {{- include "meiwu.arms.annotations" . | indent 4 }}
+      {{- include "meiwu.msepilot.annotations" . | indent 4 }}
+      {{- if .Values.eks.enabled }}
+{{ toYaml .Values.eks.podAnnotations | indent 8 }}
+      {{- end }}
+    spec:
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+      {{- end }}
+{{- if eq .Values.lang "java" }}
+      initContainers:
+  {{- if .Values.skywalking.enabled }}
+        - image: "{{ .Values.skywalking.image.repository }}:{{ .Values.skywalking.image.tag }}"
+          name: sw-agent-sidecar
+          imagePullPolicy: IfNotPresent
+          command: ['sh']
+          args: ['-c','mkdir -p /skywalking/agent && cp -r /usr/skywalking/agent/* /skywalking/agent']
+          volumeMounts:
+            - mountPath: /skywalking/agent
+              name: sw-agent
+  {{- end }}
+  {{- if .Values.arthas.enabled }}
+        - name: arthas-sidecar
+          image: "{{ .Values.arthas.image.repository }}:{{ .Values.arthas.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          command: ['sh']
+          args: ['-c','mkdir -p /arthas && cp -r /opt/arthas/* /arthas']
+          volumeMounts:
+            - mountPath: /arthas
+              name: arthas
+  {{- end }}
+{{- end }}
+      containers:
+        - name: {{ include "meiwu.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default  "IfNotPresent" }}
+          ports:
+            {{- if .Values.ports.http.enabled }}
+            - name: http
+              containerPort: 80
+              protocol: TCP
+            {{- end }}
+{{- if eq .Values.lang "java" }}
+            {{- if .Values.ports.xxl.enabled }}
+            - name: xxl
+              containerPort: 9999
+              protocol: TCP
+            {{- end }}
+            {{- if .Values.ports.dubbo.enabled }}
+            - name: dubbo
+              containerPort: 20880
+              protocol: TCP
+            {{- end }}
+          {{- if .Values.args }}
+          args:
+              {{- range .Values.args }}
+            - {{ . | quote }}
+              {{- end }}
+          {{- end }}
+{{- end }}
+          env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+{{- if eq .Values.lang "java" }}
+            {{- if .Values.sls.enabled }}
+            - name: aliyun_logs_project
+              value: {{ include "meiwu.name" . }}
+            - name: aliyun_logs_{{ include "meiwu.name" . }}
+              value: {{ .Values.sls.path }}
+            - name: aliyun_logs_{{ include "meiwu.name" . }}_ttl
+              value: {{ .Values.sls.ttl | quote }}
+            {{- end}}
+            {{- if .Values.spring.profiles.active }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: {{ .Values.spring.profiles.active }}
+            {{- end}}
+            {{- if and .Values.jasypt.enabled .Values.jasypt.encryptor.password }}
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: encrypt
+                  key: value
+            {{- end}}
+            {{- if .Values.apollo.configservice }}
+            - name: APOLLO_CONFIGSERVICE
+              value: {{ .Values.apollo.configservice }}
+            {{- end}}
+            {{- if .Values.apollo.meta }}
+            - name: APOLLO_META
+              value: {{ .Values.apollo.meta }}
+            {{- end}}
+            {{- if .Values.skywalking.enabled }}
+            - name: SW_AGENT_NAME
+              value: {{ include "meiwu.name" . }}
+            - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+              value: {{ .Values.skywalking.oapserver.host }}:{{ .Values.skywalking.oapserver.port }}
+            - name: SW_AGENT_IGNORE_SUFFIX
+              value: .jpg,.jpeg,.js,.css,.png,.bmp,.gif,.ico,.mp3,.mp4,.html,.svg
+            {{- end}}
+            {{- if .Values.dubbo.enabled }}
+            - name: DUBBO_IP_TO_REGISTRY
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: DUBBO_PORT_TO_REGISTRY
+              value: {{ .Values.dubbo.port | quote }}
+            {{- end }}
+            {{- if .Values.env }}
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- end }}
+{{- end }}
+          volumeMounts:
+            - name: app-logs
+              mountPath: {{ .Values.log.path }}
+{{- if eq .Values.lang "java" }}
+            {{- if .Values.arthas.enabled }}
+            - name: arthas
+              mountPath: /arthas
+            {{- end }}
+            {{- if .Values.skywalking.enabled }}
+            - name: sw-agent
+              mountPath: /skywalking/agent
+            {{- end }}
+{{- end }}
+            {{- if .Values.data.persistence.enabled }}
+            - name: volume-data-pvc
+              mountPath: /mnt
+            {{- end }}
+{{- if .Values.extraVolumeMounts }}
+{{ toYaml .Values.extraVolumeMounts | indent 12}}
+{{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+        {{- if .Values.log.enabled }}
+        - name: filebeat
+          image: "{{ .Values.log.image.repository }}:{{ .Values.log.image.tag }}"
+          imagePullPolicy: IfNotPresent
+          resources:
+{{ toYaml .Values.log.resources | indent 12 }}
+          args: [
+            "-c", "/etc/filebeat.yml",
+            "-e",
+          ]
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            {{- if .Values.log.elasticsearch.host }}
+            - name: ELASTICSEARCH_HOST
+              value: {{ .Values.log.elasticsearch.host | quote}}
+            {{- end}}
+            {{- if .Values.log.elasticsearch.port }}
+            - name: ELASTICSEARCH_PORT
+              value: {{ .Values.log.elasticsearch.port | quote}}
+            {{- end}}
+          securityContext:
+            runAsUser: 0
+            privileged: true
+          volumeMounts:
+            - name: config
+              mountPath: /etc/filebeat.yml
+              subPath: filebeat.yml
+              readOnly: true
+            - name: app-logs
+              mountPath: /logs
+              readOnly: true
+        {{- end }}
+
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      {{- if or .Values.antiAffinity .Values.nodeAffinity }}
+      affinity:
+      {{- end }}
+      {{- if eq .Values.antiAffinity "hard" }}
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: "kubernetes.io/hostname"
+              labelSelector:
+                matchLabels:
+                  app: "{{ include "meiwu.name" . }}"
+                  release: "{{ .Release.Name }}"
+      {{- else if eq .Values.antiAffinity "soft" }}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: "{{ include "meiwu.name" . }}"
+                    release: "{{ .Release.Name }}"
+      {{- end }}
+      {{- with .Values.nodeAffinity }}
+        nodeAffinity:
+{{ toYaml . | indent 10 }}
+      {{- end }}
+
+      volumes:
+        - name: app-logs
+          emptyDir: {}
+{{- if eq .Values.lang "java" }}
+        {{- if .Values.arthas.enabled }}
+        - name: arthas
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.skywalking.enabled }}
+        - name: sw-agent
+          emptyDir: {}
+        {{- end }}
+{{- end }}
+      {{- if or .Values.data.persistence.enabled .Values.log.enabled }}
+        {{- if .Values.log.enabled }}
+        - name: config
+          configMap:
+            defaultMode: 0600
+            name: {{ include "meiwu.name" . }}-filebeat
+        {{- end }}
+      {{- end }}
+{{- if .Values.extraVolumes }}
+{{ toYaml .Values.extraVolumes | indent 8}}
+{{- end }}
